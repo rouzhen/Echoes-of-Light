@@ -7,7 +7,8 @@ public class EchoMovement : MonoBehaviour
     public float maxSpeed = 20;
     public float doubleJumpForce = 8f;
     public LayerMask groundLayer;
-    public Transform groundCheck;
+    public Transform
+    groundCheck;
     public ParticleSystem ImpactEffect; 
     public Transform footsteps; 
     private Rigidbody2D echoBody;
