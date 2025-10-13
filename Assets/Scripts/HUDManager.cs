@@ -13,12 +13,17 @@ public class HUDManager : MonoBehaviour
     };
 
     public GameObject scoreText;
-    public Transform restartButton;
+    public GameObject restartButton;
 
     public GameObject gameOverScreen;
+    private RectTransform scoreTextRect;
+    private RectTransform restartButtonRect;
     void Awake()
     {
         Debug.Log("HUDManager Awake called");
+        scoreTextRect = scoreText.GetComponent<RectTransform>();
+        restartButtonRect = restartButton.GetComponent<RectTransform>();
+
         if (GameManager.instance != null)
         {
             GameManager.instance.gameStart.AddListener(GameStart);
@@ -60,8 +65,8 @@ public class HUDManager : MonoBehaviour
         Debug.Log("GameStart called!");
         // hide gameover panel
         gameOverScreen.SetActive(false);
-        scoreText.transform.localPosition = scoreTextPosition[0];
-        restartButton.localPosition = restartButtonPosition[0];
+        scoreTextRect.anchoredPosition = scoreTextPosition[0];
+        restartButtonRect.anchoredPosition = restartButtonPosition[0];
     }
 
     public void SetScore(int score)
@@ -73,8 +78,8 @@ public class HUDManager : MonoBehaviour
     public void GameOver()
     {
         gameOverScreen.SetActive(true);
-        scoreText.transform.localPosition = scoreTextPosition[1];
-        restartButton.localPosition = restartButtonPosition[1];
+        scoreTextRect.anchoredPosition = scoreTextPosition[1];
+        restartButtonRect.anchoredPosition = restartButtonPosition[1];
     }
 
 }
