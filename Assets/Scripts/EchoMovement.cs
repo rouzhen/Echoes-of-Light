@@ -119,7 +119,7 @@ public class EchoMovement : MonoBehaviour
         {
             FlipechoSprite(value);
             moving = true;
-            Debug.Log("MoveCheck() called");
+            //Debug.Log("MoveCheck() called");
             Move(value);
         }
     }
