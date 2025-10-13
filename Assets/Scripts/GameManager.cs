@@ -20,6 +20,7 @@ public class GameManager : Singleton<GameManager>
     }
     void Start()
     {
+        Debug.Log("GameManager Start called");
         gameStart.Invoke();
         Time.timeScale = 1.0f;
         SceneManager.activeSceneChanged += OnSceneChanged;

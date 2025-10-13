@@ -231,7 +231,7 @@ public class EchoMovement : MonoBehaviour
         // play jump sound
         echoAudio.PlayOneShot(echoAudio.clip);
     }
-    void OnDisable()
+    void OnDestroy()
     {
         if (GameManager.instance != null)
             GameManager.instance.gameRestart.RemoveListener(GameRestart);
