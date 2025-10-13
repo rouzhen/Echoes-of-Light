@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class EchoMovement : MonoBehaviour
 {
     /* Variable declarations */
-    public float speed = 5;
+    public float speed = 7;
     private bool onGroundState = true;
     private Rigidbody2D echoBody;
 
@@ -210,7 +210,7 @@ public class EchoMovement : MonoBehaviour
         echoAnimator.SetBool("onGround", true);
         echoAnimator.SetFloat("xSpeed", 0f);
         // reset score
-        scoreText.text = "Score: 0";
+        //scoreText.text = "Score: 0";
         // reset animation
         echoAnimator.SetTrigger("gameRestart");
         alive = true;

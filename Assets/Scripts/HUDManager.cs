@@ -8,7 +8,7 @@ public class HUDManager : MonoBehaviour
         new Vector3(16.1f,5.3f,0)
     };
     private Vector3[] restartButtonPosition = {
-        new Vector3(2.00002f, -44.5f, 0),
+        new Vector3(-30f, -29f, 0),
         new Vector3(0, -150, 0)
     };
 

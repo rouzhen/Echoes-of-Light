@@ -66,7 +66,7 @@ public class Door : MonoBehaviour
         else
         {
             if (col != null) col.enabled = false;
-            if (sr != null) sr.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0.5f);
+            //if (sr != null) sr.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0.5f);
         }
     }
 
@@ -80,6 +80,6 @@ public class Door : MonoBehaviour
 
         // Restore collider and visuals
         if (col != null) col.enabled = true;
-        if (sr != null) sr.color = originalColor;
+        //if (sr != null) sr.color = originalColor;
     }
 }

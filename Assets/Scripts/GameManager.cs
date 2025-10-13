@@ -62,5 +62,8 @@ public class GameManager : Singleton<GameManager>
 
 
     public int CurrentScore => score;
-    public void ResetScore() { score = 0; scoreChange?.Invoke(score); }
+    public void ResetScore()
+    { 
+        score = 0; scoreChange?.Invoke(score); 
+    }
 }
