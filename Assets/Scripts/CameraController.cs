@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform player; // Player's Transform
+
+    public Transform player; // Mario's Transform
     public Transform endLimit; // GameObject that indicates end of map
-    private float offsetX; // initial x-offset between camera and player
-    private float offsetY; // initial y-offset between camera and player
+    private float offset; // initial x-offset between camera and Mario
     private float startX; // smallest x-coordinate of the Camera
     private float endX; // largest x-coordinate of the camera
     private float viewportHalfWidth;
@@ -16,27 +16,20 @@ public class CameraController : MonoBehaviour
     {
         // get coordinate of the bottomleft of the viewport
         // z doesn't matter since the camera is orthographic
-        Vector3 bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));
+        Vector3 bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)); // the z-component is the distance of the resulting plane from the camera 
         viewportHalfWidth = Mathf.Abs(bottomLeft.x - this.transform.position.x);
-
-        // Store both X and Y offsets
-        offsetX = this.transform.position.x - player.position.x;
-        offsetY = this.transform.position.y - player.position.y;
-
+        offset = this.transform.position.x - player.position.x;
         startX = this.transform.position.x;
         endX = endLimit.transform.position.x - viewportHalfWidth;
+
     }
 
     void Update()
     {
-        float desiredX = player.position.x + offsetX;
-        float desiredY = player.position.y + offsetY; // Follow Y position
-
+        float desiredX = player.position.x + offset;
         // check if desiredX is within startX and endX
         if (desiredX > startX && desiredX < endX)
-            this.transform.position = new Vector3(desiredX, desiredY, this.transform.position.z);
-        else
-            // Still update Y even when X is clamped
-            this.transform.position = new Vector3(this.transform.position.x, desiredY, this.transform.position.z);
+            this.transform.position = new Vector3(desiredX, this.transform.position.y, this.transform.position.z);
     }
+
 }

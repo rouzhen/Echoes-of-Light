@@ -14,7 +14,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
+  - Interactive
   - 
   - 
   - 
@@ -42,6 +42,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Door
+    uniqueID: 3066006921
     locked: 0
   m_RenderingLayers:
   - Default

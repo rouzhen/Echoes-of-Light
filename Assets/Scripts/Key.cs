@@ -4,7 +4,7 @@ public class Key : MonoBehaviour
 {
     public AudioSource keySound;
     public int keyValue = 1;
-
+    public int scoreValue = 1;
     // Track original state
     private SpriteRenderer key;
     private Collider2D keycollider;
@@ -32,6 +32,10 @@ public class Key : MonoBehaviour
         if (inventory != null) inventory.AddKey();
 
         if (keySound != null) keySound.Play();
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.IncreaseScore(scoreValue);
+        }
 
         // Hide visuals and disable pickup right away
         if (keycollider) keycollider.enabled = false;

@@ -16,6 +16,27 @@ public class HUDManager : MonoBehaviour
     public Transform restartButton;
 
     public GameObject gameOverScreen;
+    void Awake()
+    {
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.gameStart.AddListener(GameStart);
+            GameManager.instance.gameOver.AddListener(GameOver);
+            GameManager.instance.gameRestart.AddListener(GameStart);
+            GameManager.instance.scoreChange.AddListener(SetScore);
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.gameStart.RemoveListener(GameStart);
+            GameManager.instance.gameOver.RemoveListener(GameOver);
+            GameManager.instance.gameRestart.RemoveListener(GameStart);
+            GameManager.instance.scoreChange.RemoveListener(SetScore);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

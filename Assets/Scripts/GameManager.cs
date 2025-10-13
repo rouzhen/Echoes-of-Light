@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-public class GameManager : MonoBehaviour
+
+public class GameManager : Singleton<GameManager>
 {
-    public static GameManager instance { get; private set; }
     // events
     public UnityEvent gameStart;
     public UnityEvent gameRestart;
@@ -14,11 +14,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int score = 0;
 
-    void Awake()
+    override public void Awake()
     {
-        if (instance != null && instance != this) { Destroy(gameObject); return; }
-        instance = this;
-        DontDestroyOnLoad(gameObject);
+        base.Awake(); // Call Singleton's Awake
     }
     void Start()
     {

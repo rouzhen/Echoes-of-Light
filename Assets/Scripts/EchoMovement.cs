@@ -4,16 +4,17 @@ using UnityEditor;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.SceneManagement;
 
 public class EchoMovement : MonoBehaviour
 {
     /* Variable declarations */
-    public float speed = 10;
+    public float speed = 5;
     private bool onGroundState = true;
     private Rigidbody2D echoBody;
 
-    public float maxSpeed = 20;
-    public float upSpeed = 10;
+    public float maxSpeed = 10;
+    public float upSpeed = 6.5f;
     private SpriteRenderer echoSprite;
     private bool faceRightState = true;
     public TextMeshProUGUI scoreText;
@@ -33,11 +34,24 @@ public class EchoMovement : MonoBehaviour
     public Transform gameCamera;
     private bool moving = false;
     private bool jumpedState = false;
-
-
+    //public int level = 1;
 
     /*** Unity Callbacks ***/
 
+    /*void Awake()
+    {
+        // other instructions
+        // subscribe to Game Restart event
+        GameManager.instance.gameRestart.AddListener(GameRestart);
+    }*/
+
+
+    void Awake()
+    {
+
+        if (GameManager.instance != null)
+            GameManager.instance.gameRestart.AddListener(GameRestart);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -47,10 +61,8 @@ public class EchoMovement : MonoBehaviour
         echoSprite = GetComponent<SpriteRenderer>();
         // update animator state
         echoAnimator.SetBool("onGround", onGroundState);
-
-
-
     }
+
 
     // Update is called once per frame
     void Update()
@@ -74,8 +86,8 @@ public class EchoMovement : MonoBehaviour
         {
             faceRightState = false;
             echoSprite.flipX = true;
-            /*if (echoBody.linearVelocity.x > 0.05f)
-                echoAnimator.SetTrigger("onSkid");*/
+            if (echoBody.linearVelocity.x > 0.05f)
+                echoAnimator.SetTrigger("onSkid");
 
         }
 
@@ -83,8 +95,8 @@ public class EchoMovement : MonoBehaviour
         {
             faceRightState = true;
             echoSprite.flipX = false;
-            /*if (echoBody.linearVelocity.x < -0.05f)
-                echoAnimator.SetTrigger("onSkid");*/
+            if (echoBody.linearVelocity.x < -0.05f)
+                echoAnimator.SetTrigger("onSkid");
         }
     }
 
@@ -168,7 +180,11 @@ public class EchoMovement : MonoBehaviour
         }
     }
 
-
+    /*public void LevelUp()
+    {
+        level += 1;
+        echoAnimator.SetTrigger("levelUp");
+    }*/
 
     /*** Game Restart ***/
     public void RestartButtonCallback(int input)
@@ -187,24 +203,20 @@ public class EchoMovement : MonoBehaviour
         // reset sprite direction
         faceRightState = true;
         echoSprite.flipX = false;
-
         // reset Mario velocity to 0 to avoid randomly jumping
         echoBody.linearVelocity = Vector3.zero;
         // reset states
         onGroundState = true;
         echoAnimator.SetBool("onGround", true);
         echoAnimator.SetFloat("xSpeed", 0f);
-
         // reset score
         scoreText.text = "Score: 0";
-
-
         // reset animation
         echoAnimator.SetTrigger("gameRestart");
         alive = true;
-
         // reset camera position
         gameCamera.position = new Vector3(-0.9f, -0.5f, -10);
+        GameManager.instance.ResetScore();
 
     }
 
@@ -219,4 +231,10 @@ public class EchoMovement : MonoBehaviour
         // play jump sound
         echoAudio.PlayOneShot(echoAudio.clip);
     }
+    void OnDisable()
+    {
+        if (GameManager.instance != null)
+            GameManager.instance.gameRestart.RemoveListener(GameRestart);
+    }
 }
+
