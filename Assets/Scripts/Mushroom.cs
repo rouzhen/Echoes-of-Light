@@ -22,7 +22,7 @@ public class Mushroom : MonoBehaviour
         var movement = other.GetComponent<EchoMovement>();
         if (movement != null)
         {
-            //movement.LevelUp();
+            movement.LevelUp();
         }
         
         if (pickupSound != null) pickupSound.Play();

@@ -34,6 +34,7 @@ public class EchoMovement : MonoBehaviour
     public Transform gameCamera;
     private bool moving = false;
     private bool jumpedState = false;
+    public AudioClip levelUpClip;
     //public int level = 1;
 
     /*** Unity Callbacks ***/
@@ -180,11 +181,12 @@ public class EchoMovement : MonoBehaviour
         }
     }
 
-    /*public void LevelUp()
+   public void LevelUp()
     {
-        level += 1;
+        Debug.Log("Player LevelUp-ed!");
         echoAnimator.SetTrigger("levelUp");
-    }*/
+        echoAudio.PlayOneShot(levelUpClip);
+    }
 
     /*** Game Restart ***/
     public void RestartButtonCallback(int input)
