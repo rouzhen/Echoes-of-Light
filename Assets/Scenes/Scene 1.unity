@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &10450629 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3306354496480955813, guid: 53a2e0a744fce344ebbd2d054f13b11b, type: 3}
-  m_PrefabInstance: {fileID: 5656344842259303327}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &30578861
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +251,11 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!4 &33138032 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2627236892283634538, guid: 53a2e0a744fce344ebbd2d054f13b11b, type: 3}
+  m_PrefabInstance: {fileID: 1776042936}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &47265605
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,7 +551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 219504962}
   - component: {fileID: 219504961}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -798,19 +798,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2627236892283634538, guid: 53a2e0a744fce344ebbd2d054f13b11b, type: 3}
   m_PrefabInstance: {fileID: 5656344842259303327}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &429291985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10450629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec67c2d3f7d026e40bc7a057526ef2d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickupSound: {fileID: 0}
 --- !u!1 &458800155
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,7 +913,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1039,7 +1026,7 @@ Transform:
   m_GameObject: {fileID: 491277269}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.4, y: -3.51, z: 0}
+  m_LocalPosition: {x: -8.29, y: -3.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1810,7 +1797,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 1267068282506669495, guid: c89127c1915d6984ea2391b998356a7e, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 7addea9bc14c4e24ba310b5880d95c58, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -4092,7 +4079,7 @@ Transform:
   - {fileID: 991013294}
   - {fileID: 429291982}
   - {fileID: 1827255446}
-  - {fileID: 1712464996}
+  - {fileID: 33138032}
   - {fileID: 619115032}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4111,7 +4098,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4799,12 +4786,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1712464996 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2627236892283634538, guid: 53a2e0a744fce344ebbd2d054f13b11b, type: 3}
-  m_PrefabInstance: {fileID: 1743565101}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1743565101
+--- !u!1001 &1776042936
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -4854,7 +4836,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3306354496480955813, guid: 53a2e0a744fce344ebbd2d054f13b11b, type: 3}
       propertyPath: m_Name
-      value: tall mushroom (2)
+      value: tall mushroom (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5427,10 +5409,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3306354496480955813, guid: 53a2e0a744fce344ebbd2d054f13b11b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 429291985}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53a2e0a744fce344ebbd2d054f13b11b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
