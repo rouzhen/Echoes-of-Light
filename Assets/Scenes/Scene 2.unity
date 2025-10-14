@@ -943,14 +943,15 @@ MonoBehaviour:
   speed: 10
   maxSpeed: 15
   upSpeed: 8
-  scoreText: {fileID: 0}
-  gameManager: {fileID: 0}
-  finalScore: {fileID: 0}
+  scoreText: {fileID: 100792146}
+  gameManager: {fileID: 1888466936}
+  finalScore: {fileID: 470870812}
   echoAnimator: {fileID: 212377801}
   echoAudio: {fileID: 0}
   echoDeath: {fileID: 0}
   deathImpulse: 15
   gameCamera: {fileID: 123675224}
+  levelUpClip: {fileID: 8300000, guid: 846e595b9e3018d4293497b29ea97a26, type: 3}
 --- !u!95 &212377801
 Animator:
   serializedVersion: 7
@@ -4449,7 +4450,7 @@ AudioSource:
   m_GameObject: {fileID: 2008088204}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6677648280498784224, guid: c89127c1915d6984ea2391b998356a7e, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: d885ffc842af744d89f7d595ffcc176a, type: 3}
   m_PlayOnAwake: 0
@@ -4960,12 +4961,12 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 123675224}
+  - {fileID: 212377808}
   - {fileID: 318371739}
   - {fileID: 1037321075}
   - {fileID: 1054332454}
   - {fileID: 2008088210}
   - {fileID: 397125174}
-  - {fileID: 212377808}
   - {fileID: 90956699}
   - {fileID: 1888466938}
   - {fileID: 59445501}

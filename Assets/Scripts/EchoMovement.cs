@@ -184,7 +184,7 @@ public class EchoMovement : MonoBehaviour
    public void LevelUp()
     {
         Debug.Log("Player LevelUp-ed!");
-        echoAnimator.SetTrigger("levelUp");
+        echoAnimator.SetBool("IsLevelingUp", true);
         echoAudio.PlayOneShot(levelUpClip);
     }
 
@@ -211,6 +211,7 @@ public class EchoMovement : MonoBehaviour
         onGroundState = true;
         echoAnimator.SetBool("onGround", true);
         echoAnimator.SetFloat("xSpeed", 0f);
+        echoAnimator.SetBool("IsLevelingUp", false);
         // reset score
         //scoreText.text = "Score: 0";
         // reset animation
