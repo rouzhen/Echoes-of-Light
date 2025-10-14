@@ -3,7 +3,7 @@ using UnityEngine;
 public interface IPowerup
 {
     void DestroyPowerup();
-    void SpawnPowerup();
+    //void SpawnPowerup();
     void ApplyPowerup(MonoBehaviour i);
 
     PowerupType powerupType
@@ -11,10 +11,10 @@ public interface IPowerup
         get;
     }
 
-    bool hasSpawned
+    /*bool hasSpawned
     {
         get;
-    }
+    }*/
 }
 
 

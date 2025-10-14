@@ -25,13 +25,13 @@ public abstract class BasePowerup : MonoBehaviour, IPowerup
         }
     }
 
-    public bool hasSpawned
+    /*public bool hasSpawned
     {
         get // getter
         {
             return spawned;
         }
-    }
+    }*/
 
     public void DestroyPowerup()
     {
@@ -39,6 +39,6 @@ public abstract class BasePowerup : MonoBehaviour, IPowerup
     }
 
     // 2. abstract methods, must be implemented by derived classes
-    public abstract void SpawnPowerup();
+    /*public abstract void SpawnPowerup();*/
     public abstract void ApplyPowerup(MonoBehaviour i);
 }
