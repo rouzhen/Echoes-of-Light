@@ -891,6 +891,7 @@ GameObject:
   - component: {fileID: 491277276}
   - component: {fileID: 491277278}
   - component: {fileID: 491277279}
+  - component: {fileID: 491277280}
   m_Layer: 6
   m_Name: Echo
   m_TagString: Player
@@ -959,8 +960,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0098695755, y: 0.006163597}
-  m_Size: {x: 0.5527592, y: 0.6810603}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.53, y: 0.65}
   m_Direction: 0
 --- !u!212 &491277272
 SpriteRenderer:
@@ -1354,6 +1355,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &491277280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491277269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b209391ae128004197c95131bbc6eaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useAutoFit: 1
+  padding: {x: 0.05, y: 0.05}
+  sizeScale: {x: 1, y: 1}
+  autoDirection: 0
+  useManualProfile: 1
+  manualSize: {x: 0.6, y: 1.3}
+  manualOffset: {x: 0, y: 0}
+  manualDirection: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
