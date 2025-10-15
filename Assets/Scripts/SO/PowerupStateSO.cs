@@ -28,5 +28,6 @@ public class PowerupStateSO : ScriptableObject {
     // Reset to default
     public void ResetHighestPowerup() {
         previousHighestPowerup = PowerupType.Small;
+        SetValue(PowerupType.Small);
     }
 }

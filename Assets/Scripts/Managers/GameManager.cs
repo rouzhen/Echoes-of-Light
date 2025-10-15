@@ -10,8 +10,10 @@ public class GameManager : Singleton<GameManager>
     public UnityEvent gameStart;
     public UnityEvent gameRestart;
     public UnityEvent<int> scoreChange;
-    
+
     public IntVariable gameScore;
+    public PowerupStateSO powerupState;
+
     public UnityEvent gameOver;
 
     [SerializeField] private int score = 0;
@@ -19,10 +21,14 @@ public class GameManager : Singleton<GameManager>
     override public void Awake()
     {
         base.Awake(); // Call Singleton's Awake
+        Debug.Log($"[GM] SO ref: {powerupState.name} id={powerupState.GetInstanceID()}");
+        powerupState.Value = PowerupType.Small;
+        Debug.Log("[GM.Awake] After reset: " + powerupState.Value);
     }
     void Start()
     {
         Debug.Log("GameManager Start called");
+        Debug.Log("[GM.Start] Value now: " + powerupState.Value);
         gameStart.Invoke();
         Time.timeScale = 1.0f;
         SceneManager.activeSceneChanged += OnSceneChanged;

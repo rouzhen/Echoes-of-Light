@@ -22,7 +22,7 @@ public enum PowerupType
 {
     Small = 1,
     MagicMushroom = 1,
-    OneUpMushroom = 2,
+    FireFlower = 1,
     StarMan = 3
 }
 

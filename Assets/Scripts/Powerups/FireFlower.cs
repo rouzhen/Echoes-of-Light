@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class MagicMushroom : BasePowerup
+public class FireFlower : BasePowerup
 {
     public PowerupStateSO powerupState; // Assign in Inspector
     public AudioSource pickupSound;
@@ -35,15 +35,11 @@ public class MagicMushroom : BasePowerup
         StartCoroutine(DeactivateAfterDelay());
     }
 
-
     public override void ApplyPowerup(MonoBehaviour i)
     {
-        if (powerupState == null)
-        {
-            Debug.LogError("[PowerupPickup] powerupState is not assigned on " + name);
-            return;
-        }
-        powerupState.SetValue(PowerupType.MagicMushroom);
+        // Update the ScriptableObject state
+        powerupState.SetValue(PowerupType.FireFlower);
+
         // Optionally, call a method on EchoMovement to update visuals/collider
         var movement = i as EchoMovement;
         if (movement != null) {

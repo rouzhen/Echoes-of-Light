@@ -36,6 +36,9 @@ public class EchoMovement : MonoBehaviour
     public Transform gameCamera;
     private bool moving = false;
     private bool jumpedState = false;
+
+    private bool IsLevelingUp = false;
+    private bool IsFire = false;
     public AudioClip levelUpClip;
     //public int level = 1;
 
@@ -69,7 +72,12 @@ public class EchoMovement : MonoBehaviour
         echoSprite = GetComponent<SpriteRenderer>();
         // update animator state
         echoAnimator.SetBool("onGround", onGroundState);
-        ApplyForm(powerupState.Value);
+        echoAnimator.SetBool("IsLevelingUp", IsLevelingUp);
+        echoAnimator.SetBool("IsFire", IsFire);
+        Debug.Log($"[Player] SO ref: {powerupState.name} id={powerupState.GetInstanceID()}");
+        Debug.Log("[Player.OnEnable] Mirroring: " + powerupState.Value);
+        //ApplyForm(powerupState.Value);
+        Debug.Log($"Applying {powerupState.Value}");
     }
 
 
@@ -197,8 +205,10 @@ public class EchoMovement : MonoBehaviour
 
     public void ApplyForm(PowerupType type)
     {
-        bool isBig = type == PowerupType.MagicMushroom;
-        echoAnimator.SetBool("IsLevelingUp", isBig);
+        bool isFire = (type == PowerupType.FireFlower);
+        bool IsLevelingUp = type == PowerupType.MagicMushroom;
+        echoAnimator.SetBool("IsLevelingUp", IsLevelingUp);
+        echoAnimator.SetBool("IsFire", isFire);
     }
 
     /*** Game Restart ***/
@@ -225,6 +235,7 @@ public class EchoMovement : MonoBehaviour
         echoAnimator.SetBool("onGround", true);
         echoAnimator.SetFloat("xSpeed", 0f);
         echoAnimator.SetBool("IsLevelingUp", false);
+        echoAnimator.SetBool("IsFire", false);
         // reset score
         //scoreText.text = "Score: 0";
         // reset animation
