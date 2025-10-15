@@ -14,7 +14,7 @@ public class HUDManager : MonoBehaviour
 
     public GameObject scoreText;
     public GameObject restartButton;
-
+    public IntVariable gameScore;
     public GameObject gameOverScreen;
     private RectTransform scoreTextRect;
     private RectTransform restartButtonRect;
@@ -80,6 +80,7 @@ public class HUDManager : MonoBehaviour
         gameOverScreen.SetActive(true);
         scoreTextRect.anchoredPosition = scoreTextPosition[1];
         restartButtonRect.anchoredPosition = restartButtonPosition[1];
+        
     }
 
 }

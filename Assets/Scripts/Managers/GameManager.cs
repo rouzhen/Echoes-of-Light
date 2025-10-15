@@ -10,6 +10,8 @@ public class GameManager : Singleton<GameManager>
     public UnityEvent gameStart;
     public UnityEvent gameRestart;
     public UnityEvent<int> scoreChange;
+    
+    public IntVariable gameScore;
     public UnityEvent gameOver;
 
     [SerializeField] private int score = 0;

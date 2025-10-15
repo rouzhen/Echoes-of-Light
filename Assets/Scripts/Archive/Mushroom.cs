@@ -9,6 +9,7 @@ public class Mushroom : MonoBehaviour
     private SpriteRenderer visuals;
     private Collider2D triggerCol;
     private bool consumed;
+
     void Awake()
     {
         visuals = GetComponent<SpriteRenderer>();
@@ -33,7 +34,6 @@ public class Mushroom : MonoBehaviour
     {
         if (consumed) return;
         if (!other.CompareTag("Player")) return;
-    // Prefer getting player component from parent chain in case collider is on a child
         var movement = other.GetComponentInParent<EchoMovement>();
         if (movement == null)
         {
@@ -51,15 +51,12 @@ public class Mushroom : MonoBehaviour
 
         consumed = true;
 
-        // Play SFX from a separate one-shot if needed, so disabling the object doesn't cut it
         if (pickupSound != null)
         {
-            // Detach and play so we can safely disable visuals/collider
             pickupSound.transform.SetParent(null, true);
             pickupSound.Play();
         }
 
-        // Disable trigger immediately to prevent double-trigger
         if (triggerCol != null) triggerCol.enabled = false;
 
         // Hide visuals
@@ -70,8 +67,6 @@ public class Mushroom : MonoBehaviour
 
     private bool TryApply(EchoMovement movement)
     {
-        // Example of a safe application – customize as needed
-        // movement.LevelUp() should be null-safe and idempotent per design
         movement.LevelUp();
         return true;
     }

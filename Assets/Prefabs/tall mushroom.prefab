@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2627236892283634538}
   - component: {fileID: 1169357054257540556}
   - component: {fileID: 1220837261058071842}
-  - component: {fileID: 8379167931461879542}
+  - component: {fileID: 3119305377185638086}
   m_Layer: 0
   m_Name: tall mushroom
   m_TagString: Untagged
@@ -119,7 +119,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5, y: 0.5789262}
   m_EdgeRadius: 0
---- !u!114 &8379167931461879542
+--- !u!114 &3119305377185638086
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,7 +144,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3306354496480955813}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec67c2d3f7d026e40bc7a057526ef2d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 79eb58765dad96d48acc3c5e8adb6b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
+  powerupState: {fileID: 11400000, guid: e4aac4cafb787cd42b292095f2997bf0, type: 2}
   pickupSound: {fileID: 0}

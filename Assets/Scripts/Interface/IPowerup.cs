@@ -20,7 +20,7 @@ public interface IPowerup
 
 public enum PowerupType
 {
-    Coin = 0,
+    Small = 1,
     MagicMushroom = 1,
     OneUpMushroom = 2,
     StarMan = 3
