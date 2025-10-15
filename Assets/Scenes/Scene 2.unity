@@ -951,6 +951,7 @@ MonoBehaviour:
   echoDeath: {fileID: 0}
   deathImpulse: 15
   gameCamera: {fileID: 123675224}
+  levelUpClip: {fileID: 0}
 --- !u!95 &212377801
 Animator:
   serializedVersion: 7
@@ -2164,7 +2165,7 @@ Transform:
   m_GameObject: {fileID: 495174839}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 14.33, y: -2.17, z: 0}
+  m_LocalPosition: {x: 10.27, y: -2.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
