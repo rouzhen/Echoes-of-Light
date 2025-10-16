@@ -22,7 +22,6 @@ public class GameManager : Singleton<GameManager>
     {
         base.Awake(); // Call Singleton's Awake
         Debug.Log($"[GM] SO ref: {powerupState.name} id={powerupState.GetInstanceID()}");
-        powerupState.Value = PowerupType.Small;
         Debug.Log("[GM.Awake] After reset: " + powerupState.Value);
     }
     void Start()

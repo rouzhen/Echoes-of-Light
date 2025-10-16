@@ -74,6 +74,7 @@ public class EchoMovement : MonoBehaviour
         echoAnimator.SetBool("onGround", onGroundState);
         echoAnimator.SetBool("IsLevelingUp", IsLevelingUp);
         echoAnimator.SetBool("IsFire", IsFire);
+        ApplyForm(powerupState.Value);
         Debug.Log($"[Player] SO ref: {powerupState.name} id={powerupState.GetInstanceID()}");
         Debug.Log("[Player.OnEnable] Mirroring: " + powerupState.Value);
         //ApplyForm(powerupState.Value);
