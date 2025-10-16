@@ -17,6 +17,7 @@ public class EchoMovement : MonoBehaviour
     public float upSpeed = 6.5f;
     private SpriteRenderer echoSprite;
     private bool faceRightState = true;
+    public float fallVelocityThreshold = -0.3f;
     public TextMeshProUGUI scoreText;
 
     public GameObject gameManager;
@@ -77,6 +78,11 @@ public class EchoMovement : MonoBehaviour
         if (alive && moving)
         {
             Move(faceRightState == true ? 1 : -1);
+        }
+
+        if(echoBody.linearVelocityY < fallVelocityThreshold)
+        {
+            FallDetector();
         }
     }
 
@@ -178,7 +184,23 @@ public class EchoMovement : MonoBehaviour
             bool movingDown = echoBody != null && echoBody.linearVelocity.y < 0f;
             bool above = transform.position.y > other.transform.position.y + yThreshold;
 
+            if (alive)
+            {
+                // placeholder first
+                Debug.Log("Collided with enemy");
+                alive = false;
+                Time.timeScale = 0.0f;
+                GameManager.instance.GameOver();
+            }
+
         }
+    }
+    
+    // Falling
+    void FallDetector()
+    {
+        Debug.Log("Echo is falling");
+        GameManager.instance.GameOver();
     }
 
    public void LevelUp()

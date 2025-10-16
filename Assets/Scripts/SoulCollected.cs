@@ -3,7 +3,6 @@ using UnityEngine;
 // This is just a text code
 public class SoulCollected : MonoBehaviour
 {
-    GameManager gameManager;
 
     [System.NonSerialized]
     public int points = 1;
@@ -12,8 +11,21 @@ public class SoulCollected : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        gameManager.IncreaseScore(1);
-
-        Destroy(gameObject);
+        CollectSoul();
     }
+
+    void CollectSoul()
+    {
+        Debug.Log("Soul collected!");
+
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.IncreaseScore(points);
+        }
+
+        gameObject.SetActive(false);
+        
+    }
+
+    
 }
