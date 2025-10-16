@@ -20,7 +20,8 @@ public class IntVariable : Variable<int>
 
     public void ApplyChange(int amount)
     {
-        this.Value += amount;
+        // this.Value += amount;
+        SetValue(Value + amount);
     }
 
     public void ApplyChange(IntVariable amount)

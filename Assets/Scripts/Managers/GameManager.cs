@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
     // events
     public UnityEvent gameStart;
     public UnityEvent gameRestart;
+    public UnityEvent pauseGame;
+    public UnityEvent resumeGame;
     public UnityEvent<int> scoreChange;
-
     public IntVariable gameScore;
     public PowerupStateSO powerupState;
     bool IsNewSession = true;
@@ -42,9 +44,21 @@ public class GameManager : Singleton<GameManager>
     }
     private void OnSceneChanged(Scene curr, Scene next)
     {
+        ResetScore();
+        // SetScore(gameScore.Value);
         gameStart?.Invoke();
         scoreChange?.Invoke(score);  // keep HUD in sync on new scene
         Debug.Log($"[GM.OnSceneChanged] to {next.name} Value={powerupState.Value}");
+
+
+        // Ensure that buttons are being reset correctly
+        var restartButton = GameObject.Find("RestartButton")?.GetComponent<Button>();
+        if(restartButton != null)
+        {
+            restartButton.onClick.RemoveAllListeners();
+            restartButton.onClick.AddListener(GameRestart);
+            Debug.Log("[GM.OnSceneChanged] RestartButton reconnected");
+        }
     }
 
     // Update is called once per frame
@@ -56,6 +70,7 @@ public class GameManager : Singleton<GameManager>
     public void GameRestart()
     {
         Time.timeScale = 1.0f;
+        ResetScore();
         gameRestart.Invoke();
         var orchestrator = FindFirstObjectByType<ResetOrchestrator>();
         orchestrator?.ResetScene();
@@ -70,9 +85,30 @@ public class GameManager : Singleton<GameManager>
 
     
 
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+        pauseGame.Invoke();
+        Debug.Log("Game is paused");
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        resumeGame.Invoke();
+    }
+
+    public void BackToMainMenuScene()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Main Menu");
+    }
+
     public void IncreaseScore(int inc)
     {
-        SetScore(score + inc);
+        SetScore(score + inc); 
+        gameScore.ApplyChange(inc); // add to IntVariable
+        Debug.Log($"Added {inc} points to gameScore. \nCurrent gameScore: {gameScore.Value}");
     }
     public void SetScore(int newScore)
     {
@@ -90,7 +126,10 @@ public class GameManager : Singleton<GameManager>
 
     public int CurrentScore => score;
     public void ResetScore()
-    { 
-        score = 0; scoreChange?.Invoke(score); 
+    {
+        score = 0; scoreChange?.Invoke(score);
+        gameScore.SetValue(0);
+        Debug.Log($"Game score reset to {score}. \nHighest score: {gameScore.previousHighestValue.ToString()}");
     }
+    
 }
