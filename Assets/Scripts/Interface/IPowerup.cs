@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface IPowerup
 {
-    void DestroyPowerup();
+    void DeactivatePowerup();
     //void SpawnPowerup();
     void ApplyPowerup(MonoBehaviour i);
 

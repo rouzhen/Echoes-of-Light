@@ -57,7 +57,9 @@ public class GameManager : Singleton<GameManager>
     {
         Time.timeScale = 1.0f;
         gameRestart.Invoke();
-        //IsNewSession = true;
+        // Reset player, score, timers as needed...
+        var orchestrator = FindFirstObjectByType<ResetOrchestrator>();
+        orchestrator?.ResetScene();
     }
 
     public void IncreaseScore(int inc) 

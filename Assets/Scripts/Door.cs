@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class Door : MonoBehaviour, IReset
 {
     [Header("Door Settings")]
     public bool isLocked = true;
@@ -82,4 +82,5 @@ public class Door : MonoBehaviour
         if (col != null) col.enabled = true;
         //if (sr != null) sr.color = originalColor;
     }
+    public void ResetState() => ResetDoor();
 }

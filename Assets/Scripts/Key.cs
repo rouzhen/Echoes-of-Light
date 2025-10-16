@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Key : MonoBehaviour
+public class Key : MonoBehaviour, IReset
 {
     public AudioSource keySound;
     public int keyValue = 1;
@@ -59,4 +59,5 @@ public class Key : MonoBehaviour
         if (keycollider != null) keycollider.enabled = true;
         if (key != null) key.enabled = true;
     }
+    public void ResetState() => ResetKey();
 }
