@@ -21,9 +21,9 @@ public interface IPowerup
 public enum PowerupType
 {
     Small = 1,
-    MagicMushroom = 1,
-    FireFlower = 1,
-    StarMan = 3
+    MagicMushroom = 2,
+    FireFlower = 3,
+    StarMan = 4
 }
 
 public interface IPowerupApplicable

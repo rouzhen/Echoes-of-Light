@@ -4427,7 +4427,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  gameScore: {fileID: 0}
+  gameScore: {fileID: 11400000, guid: 8602c43ab560957459bd8008810dc547, type: 2}
+  powerupState: {fileID: 11400000, guid: e4aac4cafb787cd42b292095f2997bf0, type: 2}
   gameOver:
     m_PersistentCalls:
       m_Calls:

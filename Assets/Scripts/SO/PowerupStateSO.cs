@@ -13,7 +13,7 @@ public class PowerupStateSO : ScriptableObject {
         set { SetValue(value); }
     }
 
-    public virtual void SetValue(PowerupType value) {
+     public virtual void SetValue(PowerupType value) {
         //sets the current powerup state
         // if new is "higher" than previous, update previous
         if ((int)value > (int)previousHighestPowerup) previousHighestPowerup = value;
@@ -21,13 +21,13 @@ public class PowerupStateSO : ScriptableObject {
     }
 
     // Overload for setting from another SO
-    /*public void SetValue(PowerupStateSO other) {
+    public void SetValue(PowerupStateSO other) {
         SetValue(other.Value);
-    }*/
+    }
 
     // Reset to default
     public void ResetHighestPowerup() {
         previousHighestPowerup = PowerupType.Small;
         SetValue(PowerupType.Small);
-    }
+    }   
 }
