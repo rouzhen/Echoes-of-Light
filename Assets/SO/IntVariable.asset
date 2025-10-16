@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: IntVariable
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  previousHighestValue: 0
+  previousHighestValue: 3

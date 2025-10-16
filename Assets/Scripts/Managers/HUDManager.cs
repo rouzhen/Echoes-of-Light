@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class HUDManager : MonoBehaviour
 {
@@ -13,11 +14,17 @@ public class HUDManager : MonoBehaviour
     };
 
     public GameObject scoreText;
+    public GameObject finalScoreText;
+    public GameObject highScoreText;
     public GameObject restartButton;
+    public GameObject pauseButton;
+    public GameObject resumeButton;
     public IntVariable gameScore;
     public GameObject gameOverScreen;
+    public GameObject pauseMenuScreen;
     private RectTransform scoreTextRect;
     private RectTransform restartButtonRect;
+    private int highScore;
     void Awake()
     {
         //Debug.Log("HUDManager Awake called");
@@ -30,13 +37,15 @@ public class HUDManager : MonoBehaviour
             GameManager.instance.gameOver.AddListener(GameOver);
             GameManager.instance.gameRestart.AddListener(GameStart);
             GameManager.instance.scoreChange.AddListener(SetScore);
+            GameManager.instance.pauseGame.AddListener(GamePaused);
+            GameManager.instance.resumeGame.AddListener(GameResumed);
         }
         else
         {
             Debug.LogError("GameManager.instance is NULL!"); // ✅ ADD THIS
         }
-    
-}
+
+    }
 
     void OnDestroy()
     {
@@ -49,20 +58,12 @@ public class HUDManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void GameStart()
     {
         Debug.Log("GameStart called!");
+        SetScore(GameManager.instance.CurrentScore);
+        Debug.Log($"Highest Score: {gameScore.previousHighestValue.ToString()}");
+        Debug.Log($"Current Score: {gameScore.Value.ToString()}");
         // hide gameover panel
         gameOverScreen.SetActive(false);
         scoreTextRect.anchoredPosition = scoreTextPosition[0];
@@ -75,12 +76,25 @@ public class HUDManager : MonoBehaviour
         scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + score.ToString();
     }
 
+    
     public void GameOver()
     {
+        finalScoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + gameScore.Value.ToString();
+        highScoreText.GetComponent<TextMeshProUGUI>().text = "High Score: " + gameScore.previousHighestValue.ToString();
         gameOverScreen.SetActive(true);
         scoreTextRect.anchoredPosition = scoreTextPosition[1];
         restartButtonRect.anchoredPosition = restartButtonPosition[1];
-        
+
+    }
+
+    public void GamePaused()
+    {
+        pauseMenuScreen.SetActive(true);
+    }
+    
+    public void GameResumed()
+    {
+        pauseMenuScreen.SetActive(false);
     }
 
 }
