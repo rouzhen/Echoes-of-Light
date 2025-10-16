@@ -67,7 +67,7 @@ public class GameManager : Singleton<GameManager>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         gameStart?.Invoke();
-        scoreChange?.Invoke(score);
+        scoreChange?.Invoke(gameScore.Value);
         Debug.Log($"[GM.OnSceneLoaded] Scene: {scene.name} Powerup={powerupState.Value}");
 
         StartCoroutine(ReconnectAllButtons());
@@ -108,7 +108,7 @@ public class GameManager : Singleton<GameManager>
         // ResetScore();
         // SetScore(gameScore.Value);
         gameStart?.Invoke();
-        scoreChange?.Invoke(score);  // keep HUD in sync on new scene
+        scoreChange?.Invoke(gameScore.Value);  // keep HUD in sync on new scene
         Debug.Log($"[GM.OnSceneChanged] to {next.name} Value={powerupState.Value}");
 
         // Ensure that buttons are being reset correctly
@@ -121,11 +121,6 @@ public class GameManager : Singleton<GameManager>
         }
     } 
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void GameRestart()
     {
@@ -143,8 +138,6 @@ public class GameManager : Singleton<GameManager>
         SceneManager.LoadScene("Scene 1", LoadSceneMode.Single);
     }
 
-    
-
     public void PauseGame()
     {
         Time.timeScale = 0f;
@@ -161,35 +154,38 @@ public class GameManager : Singleton<GameManager>
     public void BackToMainMenuScene()
     {
         Time.timeScale = 1f;
+        gameScore.SetValue(0);
+        powerupState.SetValue(PowerupType.Small);
         SceneManager.LoadScene("Main Menu");
     }
 
     public void IncreaseScore(int inc)
     {
-        SetScore(score + inc); 
-        gameScore.ApplyChange(inc); // add to IntVariable
+        SetScore(gameScore.Value + inc); 
+        // gameScore.ApplyChange(inc); // add to IntVariable
         Debug.Log($"Added {inc} points to gameScore. \nCurrent gameScore: {gameScore.Value}");
     }
     public void SetScore(int newScore)
     {
-        score = Mathf.Max(0, newScore);
-        scoreChange?.Invoke(score);
+        gameScore.SetValue(newScore);
+        scoreChange?.Invoke(gameScore.Value);
     }
 
 
     public void GameOver()
     {
         Time.timeScale = 0.0f;
+        powerupState.SetValue(PowerupType.Small);
         gameOver.Invoke();
     }
 
 
-    public int CurrentScore => score;
+    public int CurrentScore => gameScore.Value;
     public void ResetScore()
     {
-        score = 0; scoreChange?.Invoke(score);
+        gameScore.Value = 0; scoreChange?.Invoke(gameScore.Value);
         gameScore.SetValue(0);
-        Debug.Log($"Game score reset to {score}. \nHighest score: {gameScore.previousHighestValue.ToString()}");
+        Debug.Log($"Game score reset to {gameScore.Value}. \nHighest score: {gameScore.previousHighestValue.ToString()}");
     }
 
     private void OnDestroy()
