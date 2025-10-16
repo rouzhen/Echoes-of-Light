@@ -66,6 +66,7 @@ public class HUDManager : MonoBehaviour
         Debug.Log($"Current Score: {gameScore.Value.ToString()}");
         // hide gameover panel
         gameOverScreen.SetActive(false);
+        pauseMenuScreen.SetActive(false);
         scoreTextRect.anchoredPosition = scoreTextPosition[0];
         restartButtonRect.anchoredPosition = restartButtonPosition[0];
     }

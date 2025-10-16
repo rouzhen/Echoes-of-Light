@@ -39,6 +39,7 @@ public class FireFlower : BasePowerup
     {
         // Update the ScriptableObject state
         powerupState.SetValue(PowerupType.FireFlower);
+        Debug.Log($"Powerup state: {powerupState.Value}");
 
         // Optionally, call a method on EchoMovement to update visuals/collider
         var movement = i as EchoMovement;

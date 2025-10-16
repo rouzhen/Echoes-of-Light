@@ -3047,7 +3047,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1054332454}
-  - component: {fileID: 1054332455}
   m_Layer: 0
   m_Name: Static Environment
   m_TagString: Untagged
@@ -3253,6 +3252,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000903537898424988, guid: 1e67aa4fdbad1fc45b09a7268eefc29d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000903537898424988, guid: 1e67aa4fdbad1fc45b09a7268eefc29d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1253637281}
@@ -3262,11 +3265,15 @@ PrefabInstance:
       objectReference: {fileID: 1253637280}
     - target: {fileID: 1000903537898424988, guid: 1e67aa4fdbad1fc45b09a7268eefc29d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GameRestart
+      value: RestartToFirstScene
       objectReference: {fileID: 0}
     - target: {fileID: 1000903537898424988, guid: 1e67aa4fdbad1fc45b09a7268eefc29d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: ResumeGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000903537898424988, guid: 1e67aa4fdbad1fc45b09a7268eefc29d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1095607344694803139, guid: 1e67aa4fdbad1fc45b09a7268eefc29d, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3297,6 +3304,10 @@ PrefabInstance:
       value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3942069447184547694, guid: 1e67aa4fdbad1fc45b09a7268eefc29d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3942069447184547694, guid: 1e67aa4fdbad1fc45b09a7268eefc29d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1253637281}
@@ -3306,19 +3317,27 @@ PrefabInstance:
       objectReference: {fileID: 1253637280}
     - target: {fileID: 3942069447184547694, guid: 1e67aa4fdbad1fc45b09a7268eefc29d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GameRestart
+      value: RestartToFirstScene
       objectReference: {fileID: 0}
     - target: {fileID: 3942069447184547694, guid: 1e67aa4fdbad1fc45b09a7268eefc29d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: ResumeGame
       objectReference: {fileID: 0}
+    - target: {fileID: 3942069447184547694, guid: 1e67aa4fdbad1fc45b09a7268eefc29d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4566112594274598517, guid: 1e67aa4fdbad1fc45b09a7268eefc29d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1253637280}
+      objectReference: {fileID: 1253637281}
     - target: {fileID: 4566112594274598517, guid: 1e67aa4fdbad1fc45b09a7268eefc29d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToMainMenu
+      value: BackToMainMenuScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566112594274598517, guid: 1e67aa4fdbad1fc45b09a7268eefc29d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5079872390003064956, guid: 1e67aa4fdbad1fc45b09a7268eefc29d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
