@@ -32,8 +32,8 @@ public class MagicMushroom : BasePowerup
         }
         if (triggerCol != null) triggerCol.enabled = false;
         if (visuals != null) visuals.enabled = false;
-        DeactivatePowerup();
-        //StartCoroutine(DeactivateAfterDelay());
+        //DeactivatePowerup();
+        StartCoroutine(DeactivateAfterDelay());
     }
 
 

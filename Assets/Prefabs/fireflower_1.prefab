@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3710344689028190387}
   - component: {fileID: 313661858778299558}
   - component: {fileID: 2731400227188077519}
-  - component: {fileID: 3329779861403512008}
   m_Layer: 0
   m_Name: fireflower_1
   m_TagString: Untagged
@@ -135,18 +134,3 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3329779861403512008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3626852929146870435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79eb58765dad96d48acc3c5e8adb6b81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
-  powerupState: {fileID: 11400000, guid: e4aac4cafb787cd42b292095f2997bf0, type: 2}
-  pickupSound: {fileID: 0}
