@@ -31,7 +31,7 @@ public class EchoMovement : MonoBehaviour
     int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
     // state
     [System.NonSerialized]
-    public bool alive = true;
+    public bool alive = true; 
     public static System.Action OnGameRestart;
     public Transform gameCamera;
     private bool moving = false;

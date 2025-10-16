@@ -58,6 +58,7 @@ public class Key : MonoBehaviour, IReset
         gameObject.SetActive(true);
         if (keycollider != null) keycollider.enabled = true;
         if (key != null) key.enabled = true;
+        Debug.Log($"[Pickup] Reset {name}");
     }
     public void ResetState() => ResetKey();
 }

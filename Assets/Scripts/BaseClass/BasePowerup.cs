@@ -58,6 +58,7 @@ public abstract class BasePowerup : MonoBehaviour, IPowerup, IReset
         if (triggerCol) triggerCol.enabled = true;
         if (visuals) visuals.enabled = true;
         gameObject.SetActive(true);
+        Debug.Log($"[Pickup] Reset {name}");
     }
     public void ResetState() => ResetPickup();
 

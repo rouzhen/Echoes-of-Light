@@ -15,7 +15,7 @@ public class GameManager : Singleton<GameManager>
     public PowerupStateSO powerupState;
     bool IsNewSession = true;
     public UnityEvent gameOver;
-
+    [SerializeField] ResetOrchestrator orchestrator;
     [SerializeField] private int score = 0;
 
     override public void Awake()
@@ -57,14 +57,22 @@ public class GameManager : Singleton<GameManager>
     {
         Time.timeScale = 1.0f;
         gameRestart.Invoke();
-        // Reset player, score, timers as needed...
         var orchestrator = FindFirstObjectByType<ResetOrchestrator>();
         orchestrator?.ResetScene();
+        Debug.Log($"[GM] Orchestrator={orchestrator?.name}, scene={orchestrator?.gameObject.scene.name}");
     }
 
-    public void IncreaseScore(int inc) 
+    public void RestartToFirstScene()
     {
-        SetScore(score + inc); 
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Scene 1", LoadSceneMode.Single);
+    }
+
+    
+
+    public void IncreaseScore(int inc)
+    {
+        SetScore(score + inc);
     }
     public void SetScore(int newScore)
     {
