@@ -76,9 +76,9 @@ public class EchoMovement : MonoBehaviour
         echoAnimator.SetBool("IsFire", IsFire);
         ApplyForm(powerupState.Value);
         Debug.Log($"[Player] SO ref: {powerupState.name} id={powerupState.GetInstanceID()}");
-        Debug.Log("[Player.OnEnable] Mirroring: " + powerupState.Value);
+        Debug.Log($"[Player.Start] Value={powerupState.Value}");
         //ApplyForm(powerupState.Value);
-        Debug.Log($"Applying {powerupState.Value}");
+        //Debug.Log($"Applying {powerupState.Value}");
     }
 
 
@@ -261,6 +261,11 @@ public class EchoMovement : MonoBehaviour
         // play jump sound
         echoAudio.PlayOneShot(echoAudio.clip);
     }
+    void OnDisable()
+    {
+        
+    }
+
     void OnDestroy()
     {
         if (GameManager.instance != null)

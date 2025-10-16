@@ -43,7 +43,9 @@ public class MagicMushroom : BasePowerup
             Debug.LogError("[PowerupPickup] powerupState is not assigned on " + name);
             return;
         }
+        Debug.Log($"[Pickup] Before SetValue: {powerupState.Value}");
         powerupState.SetValue(PowerupType.MagicMushroom);
+        Debug.Log($"[Pickup] After SetAndTrack: {powerupState.Value}");
         // Optionally, call a method on EchoMovement to update visuals/collider
         var movement = i as EchoMovement;
         if (movement != null) {
