@@ -2,8 +2,8 @@ using UnityEngine;
 
 public interface IPowerup
 {
-    void DestroyPowerup();
-    void SpawnPowerup();
+    void DeactivatePowerup();
+    //void SpawnPowerup();
     void ApplyPowerup(MonoBehaviour i);
 
     PowerupType powerupType
@@ -11,19 +11,19 @@ public interface IPowerup
         get;
     }
 
-    bool hasSpawned
+    /*bool hasSpawned
     {
         get;
-    }
+    }*/
 }
 
 
 public enum PowerupType
 {
-    Coin = 0,
-    MagicMushroom = 1,
-    OneUpMushroom = 2,
-    StarMan = 3
+    Small = 1,
+    MagicMushroom = 2,
+    FireFlower = 3,
+    StarMan = 4
 }
 
 public interface IPowerupApplicable

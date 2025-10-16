@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class EchoMovement : MonoBehaviour
 {
+    public GameConstants gameConstants;
+    public PowerupStateSO powerupState;
     /* Variable declarations */
     public float speed = 7;
     private bool onGroundState = true;
@@ -35,6 +37,9 @@ public class EchoMovement : MonoBehaviour
     public Transform gameCamera;
     private bool moving = false;
     private bool jumpedState = false;
+
+    private bool IsLevelingUp = false;
+    private bool IsFire = false;
     public AudioClip levelUpClip;
     //public int level = 1;
 
@@ -57,12 +62,24 @@ public class EchoMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Set constants
+        speed = gameConstants.speed;
+        maxSpeed = gameConstants.maxSpeed;
+        deathImpulse = gameConstants.deathImpulse;
+        upSpeed = gameConstants.upSpeed;
         // Set to be 30 FPS
         Application.targetFrameRate = 30;
         echoBody = GetComponent<Rigidbody2D>();
         echoSprite = GetComponent<SpriteRenderer>();
         // update animator state
         echoAnimator.SetBool("onGround", onGroundState);
+        echoAnimator.SetBool("IsLevelingUp", IsLevelingUp);
+        echoAnimator.SetBool("IsFire", IsFire);
+        ApplyForm(powerupState.Value);
+        Debug.Log($"[Player] SO ref: {powerupState.name} id={powerupState.GetInstanceID()}");
+        Debug.Log($"[Player.Start] Value={powerupState.Value}");
+        //ApplyForm(powerupState.Value);
+        //Debug.Log($"Applying {powerupState.Value}");
     }
 
 
@@ -206,8 +223,15 @@ public class EchoMovement : MonoBehaviour
    public void LevelUp()
     {
         Debug.Log("Player LevelUp-ed!");
-        echoAnimator.SetTrigger("levelUp");
         echoAudio.PlayOneShot(levelUpClip);
+    }
+
+    public void ApplyForm(PowerupType type)
+    {
+        bool isFire = (type == PowerupType.FireFlower);
+        bool IsLevelingUp = type == PowerupType.MagicMushroom;
+        echoAnimator.SetBool("IsLevelingUp", IsLevelingUp);
+        echoAnimator.SetBool("IsFire", isFire);
     }
 
     /*** Game Restart ***/
@@ -233,6 +257,8 @@ public class EchoMovement : MonoBehaviour
         onGroundState = true;
         echoAnimator.SetBool("onGround", true);
         echoAnimator.SetFloat("xSpeed", 0f);
+        echoAnimator.SetBool("IsLevelingUp", false);
+        echoAnimator.SetBool("IsFire", false);
         // reset score
         //scoreText.text = "Score: 0";
         // reset animation
@@ -241,6 +267,8 @@ public class EchoMovement : MonoBehaviour
         // reset camera position
         gameCamera.position = new Vector3(-0.9f, -0.5f, -10);
         GameManager.instance.ResetScore();
+        // reset powerup state
+        powerupState.ResetHighestPowerup();
 
     }
 
@@ -255,6 +283,11 @@ public class EchoMovement : MonoBehaviour
         // play jump sound
         echoAudio.PlayOneShot(echoAudio.clip);
     }
+    void OnDisable()
+    {
+        
+    }
+
     void OnDestroy()
     {
         if (GameManager.instance != null)
