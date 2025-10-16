@@ -65,6 +65,8 @@ public class GameManager : Singleton<GameManager>
     public void IncreaseScore(int inc) 
     {
         SetScore(score + inc); 
+        gameScore.ApplyChange(inc); // add to IntVariable
+        Debug.Log($"Added {inc} points to gameScore. \nCurrent gameScore: {gameScore.Value}");
     }
     public void SetScore(int newScore)
     {
@@ -83,6 +85,8 @@ public class GameManager : Singleton<GameManager>
     public int CurrentScore => score;
     public void ResetScore()
     { 
-        score = 0; scoreChange?.Invoke(score); 
+        score = 0; scoreChange?.Invoke(score);
+        gameScore.SetValue(0);
+        Debug.Log($"Game score reset to {score}. \nHighest score: {gameScore.previousHighestValue.ToString()}");
     }
 }

@@ -19,7 +19,7 @@ public class EchoMovement : MonoBehaviour
     public float upSpeed = 6.5f;
     private SpriteRenderer echoSprite;
     private bool faceRightState = true;
-    public float fallVelocityThreshold = -0.3f;
+    public float fallVelocityThreshold = -20f;
     public TextMeshProUGUI scoreText;
 
     public GameObject gameManager;
