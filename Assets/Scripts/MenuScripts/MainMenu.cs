@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
     public void ResetHighScore()
     {
         gameScore.ResetHighestValue();
+        Debug.Log($"High score reset. Current High score: {gameScore.previousHighestValue}");
         UpdateHighScore();
     }
 
