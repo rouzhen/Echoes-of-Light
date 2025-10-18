@@ -66,6 +66,7 @@ public class GameManager : Singleton<GameManager>
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        MusicManager.Instance.PlayMusic("Game");
         gameStart?.Invoke();
         scoreChange?.Invoke(gameScore.Value);
         Debug.Log($"[GM.OnSceneLoaded] Scene: {scene.name} Powerup={powerupState.Value}");
