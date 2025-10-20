@@ -12,6 +12,7 @@ public  class GameConstants : ScriptableObject
     public int upSpeed;
     public int deathImpulse;
     public Vector3 marioStartingPosition;
+    public int fallVelocityThreshold;
 
     // Goomba's movement
     public float goombaPatrolTime;

@@ -1,65 +1,43 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine;
 using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.SceneManagement;
 
-public class EchoMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public GameConstants gameConstants;
     public PowerupStateSO powerupState;
-    /* Variable declarations */
-    public float speed = 7;
+
     private bool onGroundState = true;
-    private Rigidbody2D echoBody;
-
-    public float maxSpeed = 10;
-    public float upSpeed = 6.5f;
-    private SpriteRenderer echoSprite;
     private bool faceRightState = true;
-    public float fallVelocityThreshold = -20f;
-    public TextMeshProUGUI scoreText;
 
-    public GameObject gameManager;
-
-    public TextMeshProUGUI finalScore;
-    public Animator echoAnimator;
-    public AudioSource echoAudio;
-    public AudioSource echoDeath;
-    public float deathImpulse = 15;
-    int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
-    // state
-    [System.NonSerialized]
-    public bool alive = true; 
-    public static System.Action OnGameRestart;
-    public Transform gameCamera;
     private bool moving = false;
     private bool jumpedState = false;
-
     private bool IsLevelingUp = false;
     private bool IsFire = false;
+
+    private Rigidbody2D echoBody;
+    private SpriteRenderer echoSprite;
+
+    public Animator echoAnimator;
+    public AudioSource echoAudio;
+    public AudioClip echoDeath;
     public AudioClip levelUpClip;
-    //public int level = 1;
 
-    /*** Unity Callbacks ***/
+    private float speed;
+    private float maxSpeed;
+    private float deathImpulse;
+    private float upSpeed;
+    private int fallVelocityThreshold;
 
-    /*void Awake()
-    {
-        // other instructions
-        // subscribe to Game Restart event
-        GameManager.instance.gameRestart.AddListener(GameRestart);
-    }*/
+    [System.NonSerialized]
+    public bool alive = true;
+    public Transform gameCamera;
+    private int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
 
-
-    void Awake()
-    {
-
-        if (GameManager.instance != null)
-            GameManager.instance.gameRestart.AddListener(GameRestart);
-    }
-    // Start is called before the first frame update
     void Start()
     {
         // Set constants
@@ -67,6 +45,7 @@ public class EchoMovement : MonoBehaviour
         maxSpeed = gameConstants.maxSpeed;
         deathImpulse = gameConstants.deathImpulse;
         upSpeed = gameConstants.upSpeed;
+        fallVelocityThreshold = gameConstants.fallVelocityThreshold;
         // Set to be 30 FPS
         Application.targetFrameRate = 30;
         echoBody = GetComponent<Rigidbody2D>();
@@ -76,12 +55,9 @@ public class EchoMovement : MonoBehaviour
         echoAnimator.SetBool("IsLevelingUp", IsLevelingUp);
         echoAnimator.SetBool("IsFire", IsFire);
         ApplyForm(powerupState.Value);
-        Debug.Log($"[Player] SO ref: {powerupState.name} id={powerupState.GetInstanceID()}");
-        Debug.Log($"[Player.Start] Value={powerupState.Value}");
-        //ApplyForm(powerupState.Value);
-        //Debug.Log($"Applying {powerupState.Value}");
+        Debug.Log($"---Level start----\n[Player] SO ref: {powerupState.name} id={powerupState.GetInstanceID()}");
+        Debug.Log($"---Level start----\n[Player.Start] Value={powerupState.Value}");
     }
-
 
     // Update is called once per frame
     void Update()
@@ -89,7 +65,6 @@ public class EchoMovement : MonoBehaviour
         echoAnimator.SetFloat("xSpeed", Mathf.Abs(echoBody.linearVelocity.x));
     }
 
-    // FixedUpdate is called 50 times a second
     void FixedUpdate()
     {
         if (alive && moving)
@@ -97,13 +72,12 @@ public class EchoMovement : MonoBehaviour
             Move(faceRightState == true ? 1 : -1);
         }
 
-        if(echoBody.linearVelocityY < fallVelocityThreshold)
+        if (echoBody.linearVelocityY < fallVelocityThreshold)
         {
             FallDetector();
         }
     }
 
-    /*** Movement Control ***/
     void FlipechoSprite(int value)
     {
         if (value == -1 && faceRightState)
@@ -175,10 +149,7 @@ public class EchoMovement : MonoBehaviour
         }
     }
 
-
-    /*** OnCollisions ***/
-
-    // Mario collides with ground
+    // GROUND COLLISION
     void OnCollisionEnter2D(Collision2D col)
     {
         // this checks if mario is on the ground
@@ -188,10 +159,9 @@ public class EchoMovement : MonoBehaviour
             //update animator state
             echoAnimator.SetBool("onGround", onGroundState);
         }
-
     }
 
-    // Mario collides with Goomba
+    // ENEMY COLLISION
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy") && alive)
@@ -207,19 +177,17 @@ public class EchoMovement : MonoBehaviour
                 Debug.Log("Collided with enemy");
                 alive = false;
                 Time.timeScale = 0.0f;
-                GameManager.instance.GameOver();
             }
         }
     }
-    
-    // Falling
     void FallDetector()
     {
         Debug.Log("Echo is falling");
         GameManager.instance.GameOver();
     }
 
-   public void LevelUp()
+    // POWERUP METHODS
+    public void LevelUp()
     {
         Debug.Log("Player LevelUp-ed!");
         echoAudio.PlayOneShot(levelUpClip);
@@ -233,16 +201,7 @@ public class EchoMovement : MonoBehaviour
         echoAnimator.SetBool("IsFire", isFire);
     }
 
-    /*** Game Restart ***/
-    public void RestartButtonCallback(int input)
-    {
-        // reset everything
-        GameRestart();
-        // resume time
-        Time.timeScale = 1.0f;
-    }
-
-
+    // RESTART CALLBACKS
     public void GameRestart()
     {
         // reset position
@@ -268,10 +227,9 @@ public class EchoMovement : MonoBehaviour
         GameManager.instance.ResetScore();
         // reset powerup state
         powerupState.ResetHighestPowerup();
-
     }
-
-    /*** Animation and Sounds ***/
+    
+    // ANIMATION AND SOUNDS
     void PlayDeathImpulse()
     {
         echoBody.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
@@ -282,10 +240,6 @@ public class EchoMovement : MonoBehaviour
         // play jump sound
         echoAudio.PlayOneShot(echoAudio.clip);
     }
-    void OnDisable()
-    {
-        
-    }
 
     void OnDestroy()
     {
@@ -293,4 +247,3 @@ public class EchoMovement : MonoBehaviour
             GameManager.instance.gameRestart.RemoveListener(GameRestart);
     }
 }
-

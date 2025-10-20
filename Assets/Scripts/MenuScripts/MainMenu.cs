@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
     }
     public void Play()
     {
-        SceneManager.LoadScene("Scene 1");
+        SceneManager.LoadScene("Lab5-Scene1");
         // MusicManager.Instance.PlayMusic("Game");
     }
 
